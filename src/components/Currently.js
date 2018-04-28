@@ -1,10 +1,21 @@
 import React from "react";
 
-const Currently = () => {
+const Currently = (props) => {
+  const { currentlyReading } = props;
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">Currently Reading</h2>
       <div className="bookshelf-books">
+
+        {/*test iteration over props*/}
+        <h3>{JSON.stringify(props)}</h3>
+         
+        <ol>
+        {currentlyReading.map(book => (
+          <li key={book.id}>{book.name}</li>
+        ))}
+        </ol>
+
         <ol className="books-grid">
           <li>
             <div className="book">

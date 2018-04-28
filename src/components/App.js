@@ -8,7 +8,7 @@ import '../styles/App.css';
 
 class App extends React.Component {
   state = {
-    currentlyReading : [],
+    currentlyReading : [{name:"bookOne", id:123},{name:"bookTwo", id:456}],
     wantToRead:[],
     alreadyRead: [],
 
@@ -24,7 +24,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-          {JSON.stringify(this.state)}
         {/*{this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
@@ -53,7 +52,7 @@ class App extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Currently />
+                <Currently currentlyReading={this.state.currentlyReading}/>
                 <WantTo />
                 <Read />
               </div>
