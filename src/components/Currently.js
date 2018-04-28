@@ -7,9 +7,6 @@ const Currently = (props) => {
       <h2 className="bookshelf-title">Currently Reading</h2>
       <div className="bookshelf-books">
 
-        {/*test iteration over props*/}
-        <h3>{JSON.stringify(props)}</h3>
-         
         <ol>
         {currentlyReading.map(book => (
           <li key={book.id}>{book.name}</li>
