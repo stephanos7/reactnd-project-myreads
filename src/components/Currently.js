@@ -8,17 +8,10 @@ const Currently = (props) => {
     <div className="bookshelf">
       <h2 className="bookshelf-title">Currently Reading</h2>
       <div className="bookshelf-books">
-
-        <ol>
-        {currentlyReading.map(book => (
-          <li key={book.id}>{book.name}</li>
-        ))}
-        </ol>
-
         <ol className="books-grid">
-          <li>
-            <Book />
-          </li>
+          {currentlyReading.map(book => (
+            <Book key={book.id} />
+          ))}
         </ol>
       </div>
     </div>
