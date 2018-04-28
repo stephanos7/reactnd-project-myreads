@@ -14,7 +14,9 @@ const Read = (props) => {
             <Book key={book.id}
                   title={book.title}
                   author={book.authors[0]}
-                  imageURL={book.imageLinks.thumbnail}/>
+                  imageURL={book.imageLinks.thumbnail}
+                  shelf={book.shelf}
+                  />
           ))}
         </ol>
       </div>

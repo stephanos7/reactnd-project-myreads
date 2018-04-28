@@ -18,6 +18,10 @@ class App extends React.Component {
     showSearchPage: false
   }
 
+  updateReadingStatus(event){
+    console.log("updating status and the event is ..: ", event.target.value);
+  }
+
   componentDidMount(){
     BooksAPI.getAll()
     .then(books => {
@@ -26,6 +30,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.books[0])
     return (
       <div className="app">
         {/*{this.state.showSearchPage ? (
@@ -56,7 +61,8 @@ class App extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Currently currentlyReading={this.state.books} />
+                <Currently currentlyReading={this.state.books}
+                           updateReadingStatus={this.updateReadingStatus} />
                 <WantTo wantToRead={this.state.books} />
                 <Read alreadyRead={this.state.books} />
               </div>
