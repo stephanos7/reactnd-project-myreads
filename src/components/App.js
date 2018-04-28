@@ -8,6 +8,10 @@ import '../styles/App.css';
 
 class App extends React.Component {
   state = {
+    currentlyReading : [],
+    wantToRead:[],
+    alreadyRead: [],
+
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -20,6 +24,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
+          {JSON.stringify(this.state)}
         {/*{this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
