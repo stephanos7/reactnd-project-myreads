@@ -49,9 +49,7 @@ class App extends React.Component {
               <ol className="books-grid"></ol>
             </div>
           </div>*/}
-        {/*) : (*/}
-          <h3>{JSON.stringify(this.state.books[0])}</h3>
-          
+        {/*) : (*/}          
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
