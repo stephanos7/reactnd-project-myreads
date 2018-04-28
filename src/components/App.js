@@ -34,7 +34,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.books[0])
     return (
       <div className="app">
         {/*{this.state.showSearchPage ? (

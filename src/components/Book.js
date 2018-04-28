@@ -4,16 +4,15 @@ import propTypes from "prop-types";
 class Book extends React.Component {
 
   static propTypes = {
-  title: propTypes.string.isRequired,
-  author: propTypes.string.isRequired,
-  imageURL: propTypes.string.isRequired
+  book: propTypes.object.isRequired,
+  updateReadingStatus: propTypes.func.isRequired
 }
   handleChange = (event, id) => {
     this.props.updateReadingStatus(event, id);
   }
 
   render(){
-    const {shelf, id, title, author} = this.props.book;
+    const {shelf, title, author} = this.props.book;
 
     return(
       <li>
