@@ -1,11 +1,13 @@
 import React from "react";
+import propTypes from "prop-types";
 
 const Book = (props) => {
+  const { title, author, imageURL } = props;
   return(
     <li>
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${props.imageURL})` }}></div>
+          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageURL})` }}></div>
           <div className="book-shelf-changer">
             <select>
               <option value="none" disabled>Move to...</option>
@@ -16,11 +18,17 @@ const Book = (props) => {
             </select>
           </div>
         </div>
-        <div className="book-title">{props.title}</div>
-        <div className="book-authors">{props.author}</div>
+        <div className="book-title">{title}</div>
+        <div className="book-authors">{author}</div>
       </div>
     </li>
   )
+}
+
+Book.propTypes = {
+  title: propTypes.string.isRequired,
+  author: propTypes.string.isRequired,
+  imageURL: propTypes.string.isRequired
 }
 
 export default Book;
