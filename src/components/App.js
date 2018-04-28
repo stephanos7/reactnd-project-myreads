@@ -56,9 +56,9 @@ class App extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Currently currentlyReading={this.state.books}/>
-                <WantTo />
-                <Read />
+                <Currently currentlyReading={this.state.books} />
+                <WantTo wantToRead={this.state.books} />
+                <Read alreadyRead={this.state.books} />
               </div>
             </div>
             {/*<div className="open-search">
