@@ -10,7 +10,7 @@ const WantTo = (props) => {
       <h2 className="bookshelf-title">Want to Read</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          {wantToRead.map(book => (
+          {wantToRead.filter(book => book.shelf === "wantToRead").map(book => (
             <Book key={book.id}
                   title={book.title}
                   author={book.authors[0]}

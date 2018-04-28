@@ -10,7 +10,7 @@ const Currently = (props) => {
       <h2 className="bookshelf-title">Currently Reading</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          {currentlyReading.map(book => (
+          {currentlyReading.filter( book => book.shelf === "currentlyReading").map(book => (
             <Book key={book.id}
                   title={book.title}
                   author={book.authors[0]}

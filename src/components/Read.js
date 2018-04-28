@@ -10,7 +10,7 @@ const Read = (props) => {
       <h2 className="bookshelf-title">Read</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          {alreadyRead.map(book => (
+          {alreadyRead.filter(book => book.shelf === "read").map(book => (
             <Book key={book.id}
                   title={book.title}
                   author={book.authors[0]}
