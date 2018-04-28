@@ -11,11 +11,8 @@ const Currently = (props) => {
       <div className="bookshelf-books">
         <ol className="books-grid">
           {currentlyReading.filter( book => book.shelf === "currentlyReading").map(book => (
-            <Book key={book.id}
-                  title={book.title}
-                  author={book.authors[0]}
-                  imageURL={book.imageLinks.thumbnail}
-                  shelf={book.shelf}
+            <Book key={book.id} 
+                  book={book}
                   updateReadingStatus={props.updateReadingStatus}/>
           ))}
         </ol>

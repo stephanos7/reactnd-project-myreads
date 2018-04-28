@@ -12,11 +12,8 @@ const WantTo = (props) => {
         <ol className="books-grid">
           {wantToRead.filter(book => book.shelf === "wantToRead").map(book => (
             <Book key={book.id}
-                  title={book.title}
-                  author={book.authors[0]}
-                  imageURL={book.imageLinks.thumbnail}
-                  shelf={book.shelf}
-                  />
+                  book={book}
+                  updateReadingStatus={props.updateReadingStatus}/>
           ))}
         </ol>
       </div>

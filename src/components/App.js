@@ -18,15 +18,19 @@ class App extends React.Component {
     showSearchPage: false
   }
 
-  updateReadingStatus(event){
-    console.log("updating status and the event is ..: ", event.target.value);
+  updateAllBooks = () => {
+    BooksAPI.getAll().then(books => {
+      this.setState(() => ({books}));
+    });
+  }
+
+  updateReadingStatus = (event, id) => {
+    BooksAPI.update(id, event.target.value)
+    .then(this.updateAllBooks());
   }
 
   componentDidMount(){
-    BooksAPI.getAll()
-    .then(books => {
-      this.setState(() => ({books}));
-    });
+    this.updateAllBooks();
   }
 
   render() {
@@ -63,8 +67,10 @@ class App extends React.Component {
               <div>
                 <Currently currentlyReading={this.state.books}
                            updateReadingStatus={this.updateReadingStatus} />
-                <WantTo wantToRead={this.state.books} />
-                <Read alreadyRead={this.state.books} />
+                <WantTo wantToRead={this.state.books}
+                        updateReadingStatus={this.updateReadingStatus} />
+                <Read alreadyRead={this.state.books}
+                      updateReadingStatus={this.updateReadingStatus} />
               </div>
             </div>
             {/*<div className="open-search">

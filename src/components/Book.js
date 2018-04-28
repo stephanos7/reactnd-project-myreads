@@ -8,20 +8,20 @@ class Book extends React.Component {
   author: propTypes.string.isRequired,
   imageURL: propTypes.string.isRequired
 }
-  handleChange = (event) => {
-    this.props.updateReadingStatus(event);
+  handleChange = (event, id) => {
+    this.props.updateReadingStatus(event, id);
   }
 
   render(){
-    const {title, author, imageURL, shelf} = this.props;
-  
+    const {shelf, id, title, author} = this.props.book;
+
     return(
       <li>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageURL})` }}></div>
+            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.thumbnail})` }}></div>
             <div className="book-shelf-changer">
-              <select defaultValue={shelf} onChange={this.handleChange}>
+              <select defaultValue={shelf} onChange={(event) => this.handleChange(event, this.props.book)}>
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
