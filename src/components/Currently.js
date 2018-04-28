@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 
 import Book from "./Book";
 
@@ -19,6 +20,10 @@ const Currently = (props) => {
       </div>
     </div>
   )
+}
+
+Currently.propTypes = {
+  currentlyReading: propTypes.array.isRequired
 }
 
 export default Currently;
