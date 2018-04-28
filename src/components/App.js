@@ -50,7 +50,7 @@ class App extends React.Component {
             </div>
           </div>*/}
         {/*) : (*/}
-          <h6>{JSON.stringify(this.state.books[0])}</h6>
+          <h3>{JSON.stringify(this.state.books[0])}</h3>
           
           <div className="list-books">
             <div className="list-books-title">
