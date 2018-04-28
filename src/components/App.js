@@ -9,10 +9,6 @@ import '../styles/App.css';
 class App extends React.Component {
   state = {
     books: [],
-    currentlyReading : [{name:"bookOne", id:123},{name:"bookTwo", id:456}],
-    wantToRead:[],
-    alreadyRead: [],
-
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -54,7 +50,7 @@ class App extends React.Component {
             </div>
           </div>*/}
         {/*) : (*/}
-          <h6>{JSON.stringify(this.state.books)}</h6>
+          <h6>{JSON.stringify(this.state.books[0])}</h6>
           
           <div className="list-books">
             <div className="list-books-title">
@@ -62,7 +58,7 @@ class App extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Currently currentlyReading={this.state.currentlyReading}/>
+                <Currently currentlyReading={this.state.books}/>
                 <WantTo />
                 <Read />
               </div>
