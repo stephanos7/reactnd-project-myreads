@@ -1,5 +1,5 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from '../utils/BooksAPI';
 import Currently from "./Currently";
 import WantTo from "./WantTo";
 import Read from "./Read";
@@ -8,6 +8,7 @@ import '../styles/App.css';
 
 class App extends React.Component {
   state = {
+    books: [],
     currentlyReading : [{name:"bookOne", id:123},{name:"bookTwo", id:456}],
     wantToRead:[],
     alreadyRead: [],
@@ -19,6 +20,13 @@ class App extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false
+  }
+
+  componentDidMount(){
+    BooksAPI.getAll()
+    .then(books => {
+      this.setState(() => ({books}));
+    });
   }
 
   render() {
@@ -46,6 +54,8 @@ class App extends React.Component {
             </div>
           </div>*/}
         {/*) : (*/}
+          <h6>{JSON.stringify(this.state.books)}</h6>
+          
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
