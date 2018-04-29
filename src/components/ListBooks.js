@@ -8,24 +8,24 @@ import Search from "./Search";
 
 const ListBooks = (props) => {
   return(
-    <div className="list-books">
-      <Search />
-        <div className="list-books-title">
-          <h1>MyReads</h1>
-        </div>
-        <div className="list-books-content">
-          <div>
-            <Currently currentlyReading={props.books}
-                        updateReadingStatus={props.updateReadingStatus} />
-            <WantTo wantToRead={props.books}
-                    updateReadingStatus={props.updateReadingStatus} />
-            <Read alreadyRead={props.books}
-                  updateReadingStatus={props.updateReadingStatus} />
+      <div>
+        <Search />
+          <div className="list-books-title">
+            <h1>MyReads</h1>
           </div>
-        </div>
-        {/*<div className="open-search">
-          <Link to="/search" component={Search}>Add a book</Link>
-        </div>*/}
+          <div className="list-books-content">
+            <div>
+              <Currently currentlyReading={props.books}
+                          updateReadingStatus={props.updateReadingStatus} />
+              <WantTo wantToRead={props.books}
+                      updateReadingStatus={props.updateReadingStatus} />
+              <Read alreadyRead={props.books}
+                    updateReadingStatus={props.updateReadingStatus} />
+            </div>
+          </div>
+          {/*<div className="open-search">
+            <Link to="/search" component={Search}>Add a book</Link>
+          </div>*/}
       </div>
   )
 }
