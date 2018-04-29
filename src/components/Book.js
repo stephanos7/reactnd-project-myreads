@@ -13,12 +13,13 @@ class Book extends React.Component {
 
   render(){
     const {shelf, title, authors} = this.props.book;
-
+    const imageLinks = this.props.book.imageLinks;
+    
     return(
       <li>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.thumbnail})` }}></div>
+            {imageLinks !== undefined ? <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.thumbnail})` }}></div> : <div className="book-cover" style={{ width: 128, height: 193}}>image unavailable</div>}
             <div className="book-shelf-changer">
               <select defaultValue={shelf} onChange={(event) => this.handleChange(event, this.props.book)}>
                 <option value="none" disabled>Move to...</option>
