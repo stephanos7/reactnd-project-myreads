@@ -12,7 +12,7 @@ class Book extends React.Component {
   }
 
   render(){
-    const {shelf, title, author} = this.props.book;
+    const {shelf, title, authors} = this.props.book;
 
     return(
       <li>
@@ -30,7 +30,7 @@ class Book extends React.Component {
             </div>
           </div>
           <div className="book-title">{title}</div>
-          <div className="book-authors">{author}</div>
+          <div className="book-authors">{authors[0]}</div>
         </div>
       </li>
     )

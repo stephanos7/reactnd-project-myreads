@@ -5,7 +5,7 @@ import Book from "./Book";
 
 class Search extends React.Component{
   state = {
-    query : ""
+    query : "Hartman"
   }
 
   render(){
@@ -29,7 +29,9 @@ class Search extends React.Component{
             </div>
           <div className="search-books-results">
             <ol className="books-grid">
-            {books.map( book => (
+            {books.filter( book => (
+              book.title.includes(this.state.query.trim()) ||  book.authors[0].includes(this.state.query.trim())
+            )).map( book => (
               <Book book={book}
                     updateReadingStatus={updateReadingStatus} />
             ))}
