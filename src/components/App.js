@@ -31,13 +31,15 @@ class App extends React.Component {
     return (
       <div className="app">
         <Route path="/search" render={ () => ( 
-        <Search />
+          <Search books={this.state.books}
+                  updateReadingStatus={this.updateReadingStatus}
+                  />
         )}/>
         <Route exact path="/" render={ () => (
           <ListBooks books={this.state.books}
-                    updateAllBooks={this.updateAllBooks}
-                    updateReadingStatus={this.updateReadingStatus}
-          />
+                     updateAllBooks={this.updateAllBooks}
+                     updateReadingStatus={this.updateReadingStatus}
+                     />
         )}/>
       </div>
     )

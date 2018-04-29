@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Book from "./Book";
+
 class Search extends React.Component{
+  state = {
+    query : ""
+  }
+
   render(){
+    const {books, updateReadingStatus} = this.props;
     return (
       <div className="list-books">
         <div className="search-books">
@@ -21,7 +28,12 @@ class Search extends React.Component{
               </div>
             </div>
           <div className="search-books-results">
-            <ol className="books-grid"></ol>
+            <ol className="books-grid">
+            {books.map( book => (
+              <Book book={book}
+                    updateReadingStatus={updateReadingStatus} />
+            ))}
+            </ol>
           </div>
         </div>
       </div>
