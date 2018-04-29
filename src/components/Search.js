@@ -5,7 +5,13 @@ import Book from "./Book";
 
 class Search extends React.Component{
   state = {
-    query : "Hartman"
+    query : ""
+  }
+
+  updateQuery = (query) => {
+    this.setState(() => ({
+      query: query.trim()
+    }))
   }
 
   render(){
@@ -24,7 +30,7 @@ class Search extends React.Component{
                     However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                     you don't find a specific author or title. Every search is limited by search terms.
                   */}
-                <input type="text" placeholder="Search by title or author"/>
+                <input type="text" value={this.state.query} onChange={(e) => this.updateQuery(e.target.value)} placeholder="Search by title or author"/>
               </div>
             </div>
           <div className="search-books-results">
@@ -32,7 +38,8 @@ class Search extends React.Component{
             {books.filter( book => (
               book.title.includes(this.state.query.trim()) ||  book.authors[0].includes(this.state.query.trim())
             )).map( book => (
-              <Book book={book}
+              <Book key={book.id}
+                    book={book}
                     updateReadingStatus={updateReadingStatus} />
             ))}
             </ol>
