@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link, Route } from "react-router-dom";
+
 import * as BooksAPI from '../utils/BooksAPI';
 
 import Currently from "./Currently";
@@ -46,9 +48,9 @@ class App extends React.Component {
                       updateReadingStatus={this.updateReadingStatus} />
               </div>
             </div>
-            {/*<div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-            </div>*/}
+            <div className="open-search">
+              <Link to="/search" component={Search}>Add a book</Link>
+            </div>
           </div>
       </div>
     )
