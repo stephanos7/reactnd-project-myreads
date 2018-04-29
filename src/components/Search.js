@@ -2,6 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import * as BooksAPI from '../utils/BooksAPI';
 import Book from "./Book";
 
 class Search extends React.Component{
@@ -11,18 +12,32 @@ class Search extends React.Component{
   }
 
   state = {
+    searchedBooks: [],
     query : ""
   }
 
   updateQuery = (query) => {
     this.setState(() => ({
       query: query
-    }))
+    }), this.searchBooks(query))
+  }
+
+  searchBooks = (query) => {
+    BooksAPI.search(query)
+    .then((searchedBooks) => this.updateStateWithSearchedBooks(searchedBooks))
+  }
+
+  updateStateWithSearchedBooks = (searchedBooks) => {
+    this.setState(() => (
+      {searchedBooks}
+    ))
   }
 
   render(){
-    const {books, updateReadingStatus} = this.props;
+    const { books, updateReadingStatus } = this.props;
+    const { searchedBooks } = this.state;
     const filterTerm = this.state.query.trim().toLowerCase();
+    console.log(searchedBooks)
     return (
       <div className="list-books">
         <div className="search-books">
@@ -34,13 +49,11 @@ class Search extends React.Component{
             </div>
           <div className="search-books-results">
             <ol className="books-grid">
-            {books.filter( book => (
-              book.title.toLowerCase().includes(filterTerm) ||  book.authors[0].toLowerCase().includes(filterTerm)
-            )).map( book => (
+            {Array.isArray(searchedBooks) && searchedBooks !== "" ? searchedBooks.map( book => (
               <Book key={book.id}
                     book={book}
                     updateReadingStatus={updateReadingStatus} />
-            ))}
+            )) : <h3>No results found</h3>}
             </ol>
           </div>
         </div>
