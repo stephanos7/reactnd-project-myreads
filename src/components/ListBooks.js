@@ -21,9 +21,9 @@ const ListBooks = (props) => {
                   updateReadingStatus={props.updateReadingStatus} />
           </div>
         </div>
-        {/*<div className="open-search">
-          <Link to="/search" component={Search}>Add a book</Link>
-        </div>*/}
+        <div className="open-search">
+          <Link to="/search">Add a book</Link>
+        </div>
       </div>
   )
 }
