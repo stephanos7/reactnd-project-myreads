@@ -7,7 +7,6 @@ import Book from "./Book";
 
 class Search extends React.Component{
   static propTypes = {
-    books: propTypes.array.isRequired,
     updateReadingStatus: propTypes.func.isRequired
   }
 
@@ -34,10 +33,8 @@ class Search extends React.Component{
   }
 
   render(){
-    const { books, updateReadingStatus } = this.props;
+    const { updateReadingStatus } = this.props;
     const { searchedBooks } = this.state;
-    const filterTerm = this.state.query.trim().toLowerCase();
-    console.log(searchedBooks)
     return (
       <div className="list-books">
         <div className="search-books">
