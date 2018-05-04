@@ -26,29 +26,36 @@ class Search extends React.Component{
     .then((searchedBooks) => this.updateStateWithSearchedBooks(searchedBooks))
   }
 
-  updateStateWithSearchedBooks = (searchedBooks) => {
+  updateStateWithSearchedBooks = (searchedBooks=[]) => {
     this.setState(() => (
       {searchedBooks}
     ))
   }
 
+  compareBooks = (myBooks=[], searchedBook) => myBooks.indexOf(searchedBook);
+
   render(){
     const { updateReadingStatus } = this.props;
-    const { searchedBooks } = this.state;
+    const { searchedBooks, query } = this.state;
+    const { myBooks }  = this.props;
+
+    const foundInMyBooks= () => this.compareBooks(myBooks, searchedBooks)
+
     return (
       <div className="list-books">
         <div className="search-books">
           <div className="search-books-bar">
             <Link className="close-search" to="/">Close</Link>
               <div className="search-books-input-wrapper">
-                <input type="text" value={this.state.query} onChange={(e) => this.updateQuery(e.target.value)} placeholder="Search by title or author"/>
+                <input type="text" value={query} onChange={(e) => this.updateQuery(e.target.value)} placeholder="Search by title or author"/>
               </div>
             </div>
           <div className="search-books-results">
             <ol className="books-grid">
-            {Array.isArray(searchedBooks) && searchedBooks !== "" ? searchedBooks.map( book => (
+            {Array.isArray(searchedBooks) ? searchedBooks.map( book => (
               <Book key={book.id}
                     book={book}
+                    foundInMyBooks={foundInMyBooks()}
                     updateReadingStatus={updateReadingStatus} />
             )) : <h3>No results found</h3>}
             </ol>
