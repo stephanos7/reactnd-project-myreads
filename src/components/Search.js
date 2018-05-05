@@ -27,8 +27,12 @@ class Search extends React.Component{
     .then((searchedBooks) => this.updateStateWithSearchedBooks(searchedBooks, this.props.myBooks))
   }
 
-  updateStateWithSearchedBooks = (searchedBooks=[], myBooks=[]) => {
+  updateStateWithSearchedBooks = (searchedBooks, myBooks=[]) => {
+
     if(Array.isArray(searchedBooks)){
+      this.setState( () => (
+        {searchedBooks}
+      ))
       // get an array of ids of books in my collection
       let myBooksIds = myBooks.map( book => book.id);
 
@@ -46,19 +50,24 @@ class Search extends React.Component{
 
       // add matches from my collection to searched books
       let mergedBooks = filteredsearchedbooks.concat(myBookMatches);
-      
+
       return this.setState(() => (
-        {mergedBooks: mergedBooks}
+        {mergedBooks}
       ))
+    }else{
+      this.setState(() => (
+        {mergedBooks: []}
+      ));
     }
   }
 
 
   render(){
     const { updateReadingStatus } = this.props;
-    const { searchedBooks, query } = this.state;
+    const { searchedBooks, mergedBooks, query } = this.state;
     const { myBooks }  = this.props;
-
+      console.log("searched",searchedBooks);
+      console.log("merged",mergedBooks)
     return (
       <div className="list-books">
         <div className="search-books">
@@ -70,21 +79,20 @@ class Search extends React.Component{
             </div>
           <div className="search-books-results">
             <ol className="books-grid">
-            {Array.isArray(searchedBooks) ? this.state.mergedBooks.map( book => (
+            {mergedBooks.map( book => (
               <Book key={book.id}
                     book={book}
-                    updateReadingStatus={updateReadingStatus} />
-            )) : <h3>No results found</h3>}
+                    updateReadingStatus={updateReadingStatus} />))}
             </ol>
+            
             
             <div className="search-books-results">
             <h4>from my books</h4>
               <ol className="books-grid">
-                {myBooks.map( book => 
+                {myBooks.map( book => (
                   <Book key={book.id}
                     book={book}
-                    updateReadingStatus={updateReadingStatus} />
-                )}
+                    updateReadingStatus={updateReadingStatus} />))}
               </ol>
             </div>
 

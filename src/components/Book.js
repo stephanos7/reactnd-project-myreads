@@ -21,7 +21,7 @@ class Book extends React.Component {
           <div className="book-top">
             {imageLinks !== undefined ? <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.thumbnail})` }}></div> : <div className="book-cover" style={{ width: 128, height: 193}}>image unavailable</div>}
             <div className="book-shelf-changer">
-              <select defaultValue={shelf} onChange={(event) => this.handleChange(event, this.props.book)}>
+              <select defaultValue={shelf ? shelf : "none"} onChange={(event) => this.handleChange(event, this.props.book)}>
                 <option value="moveTo" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
