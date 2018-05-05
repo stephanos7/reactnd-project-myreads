@@ -34,36 +34,38 @@ class Search extends React.Component{
   updateStateWithSearchedBooks = (searchedBooks=[], myBooks=[]) => {
       this.setState( () => (
         {searchedBooks}
-      ))
-    if(Array.isArray(searchedBooks)){
-
-      // get an array of ids of books in my collection
-      let myBooksIds = myBooks.map( book => book.id);
-
-      //get an array of ids of books in the search results
-      let searchedBooksIds = searchedBooks.map(book => book.id);
-
-      // find which books from the search results are already in my collection
-      let matchesFound = myBooksIds.filter( book => searchedBooksIds.includes(book));
-
-      // filter out these books from the search results
-      let filteredsearchedbooks = searchedBooks.filter( book => !matchesFound.includes(book.id));
-
-      // get the books objects from my collection based on the matched ids
-      let myBookMatches = myBooks.filter( book => matchesFound.includes(book.id));
-
-      // add matches from my collection to searched books
-      let mergedBooks = filteredsearchedbooks.concat(myBookMatches);
-
-      return this.setState(() => (
-        {mergedBooks}
-      ))
-    }else{
-      this.setState(() => (
-        {mergedBooks: []}
-      ));
-    }
+      ), this.updateSearchedBooksStateWithMatchesFromMyBooks(searchedBooks, this.props.myBooks))
   }
+  updateSearchedBooksStateWithMatchesFromMyBooks = (searchedBooks=[], myBooks=[]) => {
+    if(Array.isArray(searchedBooks)){
+          // get an array of ids of books in my collection
+          let myBooksIds = myBooks.map( book => book.id);
+
+          //get an array of ids of books in the search results
+          let searchedBooksIds = searchedBooks.map(book => book.id);
+
+          // find which books from the search results are already in my collection
+          let matchesFound = myBooksIds.filter( book => searchedBooksIds.includes(book));
+
+          // filter out these books from the search results
+          let filteredsearchedbooks = searchedBooks.filter( book => !matchesFound.includes(book.id));
+
+          // get the books objects from my collection based on the matched ids
+          let myBookMatches = myBooks.filter( book => matchesFound.includes(book.id));
+
+          // add matches from my collection to searched books
+          let mergedBooks = filteredsearchedbooks.concat(myBookMatches);
+
+          return this.setState(() => (
+            {mergedBooks}
+          ));
+        }else{
+          return this.setState(() => (
+            {mergedBooks: []}
+          ));
+        }
+      } 
+    
 
 
   render(){
@@ -86,20 +88,8 @@ class Search extends React.Component{
               <Book key={book.id}
                     book={book}
                     updateReadingStatus={updateReadingStatus} />))
-                    : <h5>error exists</h5>}
+                    : <h3>Invalid Search Term!</h3>}
             </ol>
-            
-            
-            <div className="search-books-results">
-            <h4>from my books</h4>
-              <ol className="books-grid">
-                {myBooks.map( book => (
-                  <Book key={book.id}
-                    book={book}
-                    updateReadingStatus={updateReadingStatus} />))}
-              </ol>
-            </div>
-
           </div>
         </div>
       </div>
