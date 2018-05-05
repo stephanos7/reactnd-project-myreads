@@ -23,16 +23,20 @@ class Search extends React.Component{
   }
 
   searchBooks = (query) => {
-    BooksAPI.search(query)
-    .then((searchedBooks) => this.updateStateWithSearchedBooks(searchedBooks, this.props.myBooks))
+      BooksAPI.search(query)
+      .then((searchedBooks) => {
+        if(query === this.state.query){
+          this.updateStateWithSearchedBooks(searchedBooks, this.props.myBooks)
+        }
+      });
   }
 
-  updateStateWithSearchedBooks = (searchedBooks, myBooks=[]) => {
-
-    if(Array.isArray(searchedBooks)){
+  updateStateWithSearchedBooks = (searchedBooks=[], myBooks=[]) => {
       this.setState( () => (
         {searchedBooks}
       ))
+    if(Array.isArray(searchedBooks)){
+
       // get an array of ids of books in my collection
       let myBooksIds = myBooks.map( book => book.id);
 
@@ -66,8 +70,7 @@ class Search extends React.Component{
     const { updateReadingStatus } = this.props;
     const { searchedBooks, mergedBooks, query } = this.state;
     const { myBooks }  = this.props;
-      console.log("searched",searchedBooks);
-      console.log("merged",mergedBooks)
+    
     return (
       <div className="list-books">
         <div className="search-books">
@@ -79,10 +82,11 @@ class Search extends React.Component{
             </div>
           <div className="search-books-results">
             <ol className="books-grid">
-            {mergedBooks.map( book => (
+            {!searchedBooks.hasOwnProperty("error") ? mergedBooks.map( book => (
               <Book key={book.id}
                     book={book}
-                    updateReadingStatus={updateReadingStatus} />))}
+                    updateReadingStatus={updateReadingStatus} />))
+                    : <h5>error exists</h5>}
             </ol>
             
             
